@@ -3,9 +3,10 @@ const mealsEl = document.getElementById('meals'),
   searchTerm = document.getElementById('search-tearm'),
   searchBtn = document.getElementById('search'),
   mealPopup = document.getElementById('meal-popup'),
-  popupCloseBtn = document.getElementById('close-popup'),
   mealInfoEl = document.getElementById('meal-info');
-console.log(popupCloseBtn);
+
+//popupCloseBtn = document.getElementById('close-popup'),
+// console.log(popupCloseBtn);
 
 async function getRandomMeal() {
   const resp = await fetch(
@@ -14,7 +15,6 @@ async function getRandomMeal() {
 
   const respData = await resp.json();
   const randomMeal = respData.meals[0];
-  console.log(randomMeal);
 
   addMeal(randomMeal, true);
 }
@@ -63,6 +63,22 @@ function addMeal(mealData, random = false) {
   `;
   meals.appendChild(meal);
 
+  //
+
+  meal.addEventListener('click', (e) => {
+    const elHeart = e.target.className.includes('fas fa-heart');
+    mealPopup.style.display = 'initial';
+
+    if (elHeart) {
+      mealPopup.style.display = 'none';
+    } else {
+      mealPopup.style.display = 'initial';
+    }
+    console.log(elHeart);
+    //.className = ''
+    console.log('Рыганул клик');
+  });
+
   const btn = meal.querySelector('.meal-body .fav-btn');
   btn.addEventListener('click', (e) => {
     if (btn.classList.contains('active')) {
@@ -101,8 +117,6 @@ function removeMealFromLS(mealId) {
 function getMealsFromLS() {
   const mealIds = JSON.parse(localStorage.getItem('mealIds'));
 
-  console.log(mealIds);
-
   return mealIds === null ? [] : mealIds;
 }
 
@@ -133,21 +147,48 @@ function showMealInfo(mealData) {
   const mealEl = document.createElement('div');
   const { strMealThumb, strMeal, idMeal, strInstructions } = mealData;
 
+  const ingredienst = [];
+  //get ungredients and measures
+  for (let i = 1; i <= 20; i++) {
+    if (mealData['strIngredient' + i]) {
+      ingredienst.push(
+        `${mealData['strIngredient' + i]} - ${mealData['strMeasure' + i]}`
+      );
+    } else {
+      break;
+    }
+  }
+
   mealEl.innerHTML = `
+  <button id="close-popup" class="close-popup">
+  <i class="fas fa-times"></i>
+</button>
  <h1>${strMeal}</h1>
 <img
   src="${strMealThumb}"
-  alt=""
+  alt="${strMeal}"
 />
   <p>
 ${strInstructions}
   </p>
+  <h3>Ingredients:</h3>
+  <ul>
+  ${ingredienst.map((ing) => `<li>${ing}</li>`).join('')}
+  </ul>
 `;
 
   mealInfoEl.appendChild(mealEl);
 
   //show the pop-up
+
   mealPopup.classList.remove('hidden');
+
+  // Close the modal by click
+  const btnCloseEl = document.querySelector('.close-popup');
+
+  btnCloseEl.addEventListener('click', () => {
+    mealPopup.classList.add('hidden');
+  });
 }
 
 function addMealFav(mealData) {
@@ -168,6 +209,10 @@ function addMealFav(mealData) {
     removeMealFromLS(idMeal);
     fetchFaveMeals();
   });
+  favMeal.addEventListener('click', () => {
+    showMealInfo(mealData);
+  });
+
   favContainer.appendChild(favMeal);
 }
 
@@ -188,28 +233,3 @@ searchBtn.addEventListener('click', async () => {
     });
   }
 });
-
-popupCloseBtn.addEventListener('click', () => {
-  mealPopup.classList.add('hidden');
-});
-
-{
-  /* <h1>Meal title</h1>
-<img
-  src="https://www.themealdb.com/images/media/meals/kvbotn1581012881.jpg"
-  alt=""
-/>
-<div>
-  <p>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit
-    praesentium, architecto consequuntur obcaecati perspiciatis quae
-    ipsam, similique nisi dolore sint sunt vitae aperiam non voluptas
-    assumenda eius aliquid doloremque illum?
-  </p>
-  <ul>
-    <li>ing1/mesure</li>
-    <li>ing2/mesure</li>
-    <li>ing3/mesure</li>
-  </ul>
-</div> */
-}
