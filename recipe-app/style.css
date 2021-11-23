@@ -35,11 +35,13 @@ header input {
   background-color: #eee;
   border: none;
   border-radius: 3px;
+  font-family: inherit;
   padding: 0.5rem 1rem;
 }
 header button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   color: #aaa;
   font-size: 1.5rem;
   margin-left: 10px;
@@ -48,21 +50,36 @@ header button {
 .fav-container {
   background-color: whitesmoke;
   text-align: center;
+  padding: 0.25rem 1rem;
   padding: 1rem;
 }
 .fav-meals {
   display: flex;
   list-style: none;
   padding: 0;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
 }
 
 .fav-meals li {
+  position: relative;
   width: 85px;
   margin: 5px;
 }
-
+.fav-meals li .clear {
+  background-color: transparent;
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  top: -0.5rem;
+  right: -0.5rem;
+  font-size: 1.2rem;
+}
+.fav-meals li:hover .clear {
+  opacity: 1;
+  color: red;
+}
 .fav-meals li img {
   border: 2px solid #ffffff;
   border-radius: 50%;
@@ -72,13 +89,25 @@ header button {
   width: 70px;
 }
 .fav-meals li span {
+  display: inline-block;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  width: 75px;
+}
+.fav-meals li:hover span {
+  white-space: normal;
+  overflow: auto;
 }
 .meal {
   margin: 10px;
   border-radius: 3px;
   box-shadow: 0 0 10px 2px #3333331a;
   margin: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .meal-header {
@@ -98,6 +127,69 @@ header button {
   object-fit: cover;
   height: 250px;
   width: 100%;
+  padding: 1rem;
 }
 .meal-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meal-body h4 {
+  margin: 0;
+}
+
+.meal-body .fav-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: gray;
+}
+.meal-body .fav-btn.active {
+  color: rebeccapurple;
+}
+
+.popup-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* display: none; */
+}
+
+.popup-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup {
+  background-color: white;
+  position: relative;
+  border-radius: 5px;
+  padding: 0 2rem;
+  max-width: 600px;
+  width: 100%;
+
+  /* =======Центрирование======= */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.meal-info h1 {
+  text-align: center;
+}
+.popup .close-popup {
+  background-color: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
