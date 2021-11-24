@@ -74,9 +74,8 @@ function addMeal(mealData, random = false) {
     } else {
       mealPopup.style.display = 'initial';
     }
-    console.log(elHeart);
+
     //.className = ''
-    console.log('Рыганул клик');
   });
 
   const btn = meal.querySelector('.meal-body .fav-btn');
@@ -107,7 +106,7 @@ function addMealsToLS(mealId) {
 
 function removeMealFromLS(mealId) {
   const mealIds = getMealsFromLS();
-  console.log(mealIds);
+
   localStorage.setItem(
     'mealIds',
     JSON.stringify(mealIds.filter((id) => id !== mealId))
@@ -131,10 +130,10 @@ async function fetchFaveMeals() {
   for (let i = 0; i < mealIds.length; i++) {
     const mealID = mealIds[i];
 
-    meal = await getMealById(mealID);
+    let meal = await getMealById(mealID);
+
     addMealFav(meal);
   }
-  console.log(meals);
 
   //add them to the screen
 }
@@ -205,12 +204,25 @@ function addMealFav(mealData) {
 
   const btn = favMeal.querySelector('.clear');
 
-  btn.addEventListener('click', () => {
+  //! ТУТУТУТУ
+  btn.addEventListener('click', (e) => {
     removeMealFromLS(idMeal);
     fetchFaveMeals();
   });
-  favMeal.addEventListener('click', () => {
-    showMealInfo(mealData);
+
+  favMeal.addEventListener('click', (e) => {
+    const closeSmallPreview = e.target.className.includes(
+      'fas fa-window-close'
+    );
+    mealPopup.style.display = 'initial';
+
+    if (closeSmallPreview) {
+      mealPopup.style.display = 'none';
+    } else {
+      showMealInfo(mealData);
+    }
+
+    // showMealInfo(mealData);
   });
 
   favContainer.appendChild(favMeal);
