@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Poppins:wght@600;900&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+/** Начало переменных root:  */
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: hsl(205, 86%, 17%);
+  --clr-primary-2: hsl(205, 77%, 27%);
+  --clr-primary-3: hsl(205, 72%, 37%);
+  --clr-primary-4: hsl(205, 63%, 48%);
+  /* primary/main color */
+  --clr-primary-5: #49a6e9;
+  /* --clr-primary-5: rgb(73, 166, 233); */
+  /* lighter shades of primary color */
+  --clr-primary-6: hsl(205, 89%, 70%);
+  --clr-primary-7: hsl(205, 90%, 76%);
+  --clr-primary-8: hsl(205, 86%, 81%);
+  --clr-primary-9: hsl(205, 90%, 88%);
+  --clr-primary-10: hsl(205, 100%, 96%);
+  /* darkest grey - used for headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* grey used for paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --clr-red-dark: hsl(360, 67%, 44%);
+  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-green-dark: hsl(125, 67%, 44%);
+  --clr-green-light: hsl(125, 71%, 66%);
+  --clr-black: #222;
+  --ff-primary: 'Roboto', sans-serif;
+  --ff-secondary: 'Open Sans', sans-serif;
+  --transition: all 0.3s linear;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+/** Конец  */
+
+body {
+  background-color: #9b59b6;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 100%;
+}
+
+.header {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 40px;
+}
+.header h2 {
+  margin: 0;
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+  padding: 10px;
+}
+
+.form-control.success input {
+  border-color: #2ecc71;
+}
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control i {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  visibility: hidden;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.form-control small {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.form-control.error small {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.form button {
+  background-color: #8e44ad;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+.form button:active {
+  transform: scale(0.98);
+}
+
+/** Стили для модального окна  */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(73, 166, 233, 0.5);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+  visibility: hidden;
+  z-index: 10;
+}
+/* OPEN/CLOSE MODAL */
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+}
+.modal-container {
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  width: 90vw;
+  height: 30vh;
+  max-width: var(--fixed-width);
+  text-align: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: var(--clr-red-dark);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.close-btn:hover {
+  color: var(--clr-red-light);
+  transform: scale(1.3);
+}
