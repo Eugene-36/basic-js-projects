@@ -59,8 +59,7 @@ function checkInputs() {
     setSuccessFor(password2);
   }
 
-  //show a success message
-
+  //*show a success message
   checkAllValidInputs(allDivs);
 }
 
@@ -90,14 +89,33 @@ function isLettersOnly(userName) {
 }
 
 function checkAllValidInputs(allInputs) {
-  console.log(allInputs[2]);
+  let zero = allInputs[0];
+  let two = allInputs[1];
+  let three = allInputs[2];
+  let foughr = allInputs[3];
 
+  if (
+    zero.classList.contains('success') &&
+    two.classList.contains('success') &&
+    three.classList.contains('success') &&
+    foughr.classList.contains('success')
+  ) {
+    popup.classList.add('open-modal');
+    setTimeout(() => {
+      popup.classList.remove('open-modal');
+      form.reset();
+      zero.classList.remove('success');
+      two.classList.remove('success');
+      three.classList.remove('success');
+      foughr.classList.remove('success');
+    }, 2000);
+  }
 
-  allInputs.forEach((item) => {
-    console.log(item);
-    // if (item.classList.contains('success')) {
-    //   //counter++;
-    //   console.log('сюда зашёл');
-    // } // popup.classList.add('open-modal');
-  });
+  // allInputs.forEach((item) => {
+  //   console.log(item);
+  // if (item.classList.contains('success')) {
+  //   //counter++;
+  //   console.log('сюда зашёл');
+  // } // popup.classList.add('open-modal');
+  // });
 }
