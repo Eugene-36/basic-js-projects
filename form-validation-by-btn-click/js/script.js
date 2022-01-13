@@ -89,10 +89,10 @@ function isLettersOnly(userName) {
 }
 
 function checkAllValidInputs(allInputs) {
-  let zero = allInputs[0];
-  let two = allInputs[1];
-  let three = allInputs[2];
-  let foughr = allInputs[3];
+  let zero = allInputs[0],
+    two = allInputs[1],
+    three = allInputs[2],
+    foughr = allInputs[3];
 
   if (
     zero.classList.contains('success') &&
