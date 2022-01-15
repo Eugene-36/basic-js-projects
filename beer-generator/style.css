@@ -15,7 +15,7 @@ body {
   background-color: #febc58;
 }
 .random-beer {
-  margin-top: 150px;
+  /* margin-top: 150px; */
   color: white;
   font-size: 30px;
   font-family: helvetica;
@@ -59,4 +59,8 @@ body {
 i {
   font-size: 30px;
   color: white;
+}
+.beer-img {
+  margin-top: 25px;
+  height: 250px;
 }
