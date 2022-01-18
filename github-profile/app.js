@@ -28,7 +28,7 @@ function createUserCard(user) {
 
   const cardHTML = `
   <div class="card">
-  <div class="img-container">
+  <div>
   <img class="avatar" src="${avatar_url}" alt="${name}">
   </div>
   <div class="user-info">
@@ -40,7 +40,7 @@ function createUserCard(user) {
      <li>${public_repos}<strong>Public Repos</strong></li>
      </ul>
 
-     <ul class="repos" id="repos"></ul>
+     <div class="repos" id="repos"></div>
   </div>
   </div>
   
@@ -51,6 +51,20 @@ function createUserCard(user) {
 function addReposToCard(repos) {
   const reposEl = document.getElementById('repos');
   console.log('repos', repos);
+
+  repos
+    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    .slice(0, 9)
+    .forEach((repo) => {
+      const repoEl = document.createElement('a');
+      repoEl.classList.add('repo');
+
+      repoEl.href = repo.html_url;
+      repoEl.target = '_blank';
+      repoEl.innerText = repo.name;
+
+      reposEl.appendChild(repoEl);
+    });
 }
 
 form.addEventListener('submit', (e) => {
