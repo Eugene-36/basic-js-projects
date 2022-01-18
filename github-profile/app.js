@@ -10,7 +10,6 @@ async function getUser(username) {
   const resp = await fetch(APIURL + username);
   const respData = await resp.json();
 
-  console.log('respData', respData);
   createUserCard(respData);
 
   getRepos(username);
@@ -50,7 +49,6 @@ function createUserCard(user) {
 
 function addReposToCard(repos) {
   const reposEl = document.getElementById('repos');
-  console.log('repos', repos);
 
   repos
     .sort((a, b) => b.stargazers_count - a.stargazers_count)
