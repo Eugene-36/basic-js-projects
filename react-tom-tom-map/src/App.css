@@ -1,3 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+.app {
+  height: 600px;
+  width: 100vh;
+}
+
 .map {
-  height: 800px;
+  height: 100%;
+  width: 100%;
+}
+.marker {
+  background-image: url('https://png.pngtree.com/png-vector/20201023/ourmid/pngtree-map-marker-map-pin-shapes-elements-in-6-color-location-destination-png-image_2374144.jpg');
+  background-size: cover;
+  width: 22px;
+  height: 22px;
+  background-color: yellow;
+  border-radius: 11px;
+  border: solid 3px darkslategray;
 }
