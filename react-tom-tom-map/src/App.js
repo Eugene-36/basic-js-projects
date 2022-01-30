@@ -33,7 +33,7 @@ const App = () => {
         data: geoJson,
       },
       paint: {
-        'line-color': 'red',
+        'line-color': '#4a90e2',
         'line-width': 6,
       },
     });
@@ -55,6 +55,7 @@ const App = () => {
     };
 
     const destinations = [];
+
     let map = tt.map({
       key: process.env.REACT_APP_TOM_TOM_API_KEY,
       container: mapElement.current,
@@ -95,8 +96,8 @@ const App = () => {
     };
     addMarker();
 
-    const sortDestinations = (location) => {
-      const pointsForDestinations = location.map((destination) => {
+    const sortDestinations = (locations) => {
+      const pointsForDestinations = locations.map((destination) => {
         return convertToPoints(destination);
       });
 
@@ -112,7 +113,7 @@ const App = () => {
             const results = matrixAPIResults.matrix[0];
             const resultsArray = results.map((result, index) => {
               return {
-                location: location[index],
+                location: locations[index],
                 drivingtime: result.response.routeSummary.travelTimeInSeconds,
               };
             });
@@ -149,6 +150,7 @@ const App = () => {
       addDeliveryMarker(e.lngLat, map);
       recalculateRoutes();
     });
+    console.log(destinations);
     return () => map.remove();
   }, [longitude, latitude]);
 
