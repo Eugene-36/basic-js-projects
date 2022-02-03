@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import s from './style.module.css';
 
@@ -22,15 +23,18 @@ const ProductComponent = () => {
       //       </div>
       //     </div>
       //   </div>
-      <div className={s.product_item}>
-        <img src={image} />
-        <div className={s.product_list}>
-          <h3>{title}</h3>
-          <span className={s.price}>{price}</span>
-          <a href='' className={s.button}>
-            В корзину
-          </a>
-        </div>
+      <div className={s.product_item} key={id}>
+        <Link to={`/product/${id}`}>
+          <img src={image} />
+          <div className={s.product_list}>
+            <h3>{title}</h3>
+            <h4>{category}</h4>
+            <span className={s.price}>{price}</span>
+            <button href='' className={s.button}>
+              В корзину
+            </button>
+          </div>
+        </Link>
       </div>
     );
   });

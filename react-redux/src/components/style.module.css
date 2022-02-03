@@ -9,13 +9,14 @@
   background: white;
   font-family: 'Open Sans';
   transition: 0.3s ease-in;
+  margin-bottom: 50px;
 }
 .product_item:hover {
   border-bottom: 2px solid #fc5a5a;
 }
 .product_item img {
-  display: block;
-  width: 100%;
+  /* display: block; */
+  width: 150px;
 }
 .product_list {
   background: #fafafa;
