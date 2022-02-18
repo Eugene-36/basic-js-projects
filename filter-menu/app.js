@@ -123,6 +123,9 @@ function displayMenuBtns(data) {
   const categories = data.reduce(
     (values, item) => {
       if (!values.includes(item.category)) {
+        //console.log('values', values);
+        //console.log('item', item.category);
+
         values.push(item.category);
       }
       return values;
@@ -140,10 +143,10 @@ function displayMenuBtns(data) {
     .join('');
   container.innerHTML = categoryBtns;
   const filterBtns = container.querySelectorAll('.filter-btn');
-  console.log(categoryBtns);
+  console.log('filterBtns', filterBtns);
   //filter items
   filterBtns.forEach((item) => {
-    //console.log(item);
+    console.log(item);
     item.addEventListener('click', (e) => {
       const category = e.currentTarget.dataset.id;
       const menuCategory = menu.filter((menuItem) => {
