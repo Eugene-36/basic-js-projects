@@ -1,4 +1,4 @@
-export default function toggleCartStatus(selector) {
+export default function toggleCartStatus() {
   const cartEmptyBadge = document.querySelector('[data-cart-empty]');
   const cartWrapper = document.querySelector('.cart-wrapper');
   const lengthOfchildrens = cartWrapper.children.length;
