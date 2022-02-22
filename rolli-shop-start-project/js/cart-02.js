@@ -1,3 +1,7 @@
+import toggleCartStatus from './toggleCartStatus.js';
+import calcCartPriceAndDelivery from './calcCartPrice.js';
+//import calcCartPriceAndDelivery from './calcCartPrice.js';
+
 //* Div внутри корзины, в которую мы добавляем товары
 const cartWrapper = document.querySelector('.cart-wrapper');
 
@@ -9,8 +13,6 @@ window.addEventListener('click', (e) => {
   if (e.target.hasAttribute('data-cart')) {
     // Находим карточку с товаром, внутри которой был совершён клик
     const card = e.target.closest('.card');
-    //console.log('card', card.querySelector('.product-img').src);
-    //console.log('card', card.querySelector('.product-img').getAttribute('src'));
 
     // Собираем данные с этого товара и записываем их в единый объект productInfo
     const productInfo = {
@@ -33,8 +35,6 @@ window.addEventListener('click', (e) => {
       counterElement.innerText =
         parseInt(counterElement.innerText) + parseInt(productInfo.counter);
     } else {
-      //* Если товара нет в корзине
-      console.log('itemInCart', itemInCart);
       //* Сдесь делаю деструктуризацию нашего бъекта productInfo
       const { id, imgSrc, title, itemsInBox, weight, price, counter } =
         productInfo;
@@ -76,5 +76,11 @@ window.addEventListener('click', (e) => {
 
     //* Сбрасываем счётчик на добавленного товара на 1
     card.querySelector('[data-counter]').innerText = '1';
+
+    //* Отображение статуса корзины Пустая / Полная
+    toggleCartStatus('cart-item');
+
+    //* Пересчёт общей стоимости товаров в корзине
+    calcCartPriceAndDelivery();
   }
 });

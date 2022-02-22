@@ -1,3 +1,6 @@
+import toggleCartStatus from './toggleCartStatus.js';
+import calcCartPriceAndDelivery from './calcCartPrice.js';
+
 const btnMinues = document.querySelectorAll('[data-action="minus"]');
 const btnPlues = document.querySelectorAll('[data-action="plus"]');
 const counter = document.querySelectorAll('[data-counter]');
@@ -45,11 +48,32 @@ window.addEventListener('click', (e) => {
   }
 
   if (gettingDataSetMinues) {
-    const decrement = (dataCounter.innerText = --dataCounter.innerText);
+    //* Проверка на счётчик больше нуля
+    if (parseInt(dataCounter.innerText) > 1) {
+      dataCounter.innerText = --dataCounter.innerText;
+    } else if (
+      e.target.closest('.cart-wrapper') &&
+      parseInt(dataCounter.innerText) === 1
+    ) {
+      console.log('IN CART!');
+      //* Удаляем товар из корзины
+      e.target.closest('.cart-item').remove();
 
-    //* Если счётчик меньше или равно 1 то записую 1
-    if (decrement <= 1) {
-      dataCounter.innerText = '1';
+      //* Отображение статуса корзины Пустая / Полная
+      toggleCartStatus();
+
+      //? Пересчёт общей стоимости товаров в корзине
+
+      calcCartPriceAndDelivery();
     }
+  }
+
+  //* Проверяем клик на + или - внутри корзины
+  if (
+    e.target.hasAttribute('data-action') &&
+    e.target.closest('.cart-wrapper')
+  ) {
+    //? Пересчёт общей стоимости товаров в корзине
+    calcCartPriceAndDelivery();
   }
 });
