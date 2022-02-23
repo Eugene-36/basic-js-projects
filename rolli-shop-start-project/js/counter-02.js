@@ -1,10 +1,6 @@
 import toggleCartStatus from './toggleCartStatus.js';
 import calcCartPriceAndDelivery from './calcCartPrice.js';
 
-const btnMinues = document.querySelectorAll('[data-action="minus"]');
-const btnPlues = document.querySelectorAll('[data-action="plus"]');
-const counter = document.querySelectorAll('[data-counter]');
-
 //! Мой вариант =====
 
 // btnPlues.forEach((item, i) => {
@@ -55,7 +51,6 @@ window.addEventListener('click', (e) => {
       e.target.closest('.cart-wrapper') &&
       parseInt(dataCounter.innerText) === 1
     ) {
-      console.log('IN CART!');
       //* Удаляем товар из корзины
       e.target.closest('.cart-item').remove();
 

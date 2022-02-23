@@ -35,7 +35,7 @@ window.addEventListener('click', (e) => {
       counterElement.innerText =
         parseInt(counterElement.innerText) + parseInt(productInfo.counter);
     } else {
-      //* Сдесь делаю деструктуризацию нашего бъекта productInfo
+      //* Здесь делаю деструктуризацию нашего бъекта productInfo
       const { id, imgSrc, title, itemsInBox, weight, price, counter } =
         productInfo;
       //* Собранные данные подставим в шаблон для товара в корзине

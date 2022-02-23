@@ -7,10 +7,8 @@ export default function toggleCartStatus() {
   if (lengthOfchildrens > 0) {
     cartEmptyBadge.classList.add('none');
     orderForm.classList.remove('none');
-    console.log('Full of stuff');
   } else {
     cartEmptyBadge.classList.remove('none');
     orderForm.classList.add('none');
-    console.log('Empty');
   }
 }

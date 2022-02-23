@@ -1,5 +1,4 @@
 const productsContainer = document.querySelector('#products-container');
-console.log('productsContainer', productsContainer);
 
 getProducts();
 async function getProducts() {
@@ -11,11 +10,7 @@ async function getProducts() {
 }
 
 function renderProducts(array) {
-  console.log('array', array);
-
   array.forEach(({ id, imgSrc, itemsInBox, price, title, weight }) => {
-    console.log('title', title);
-
     const productHTML = `
       <div class="col-md-6">
       <div class="card mb-4" data-id="${id}">
