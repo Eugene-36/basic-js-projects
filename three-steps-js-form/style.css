@@ -4,7 +4,10 @@
   margin: 0;
 }
 
+body,
 html {
+  height: 100%;
+  overflow: hidden;
   scroll-behavior: smooth;
 }
 button {
@@ -19,6 +22,12 @@ ul {
 a {
   text-decoration: none;
 }
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .card {
   background-color: white;
   border: 1px solid #333;
@@ -26,7 +35,9 @@ a {
   padding: 0.5rem;
   max-width: 300px;
   margin: 0 auto;
-  display: none;
+  /* display: none; */
+  animation: fade 250ms ease-in-out forwards;
+  /* display: none; */
 }
 .form-group {
   display: flex;
@@ -56,5 +67,42 @@ a {
   text-align: center;
 }
 .card.active {
-  display: block;
+  animation: slide 250ms 125ms ease-in-out both;
+}
+
+.multi-step-form {
+  overflow: hidden;
+  position: relative;
+}
+
+.hide {
+  display: none;
+}
+@keyframes slide {
+  0% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
 }

@@ -8,65 +8,72 @@
     <title>3-steps Form</title>
   </head>
   <body>
-    <form data-multi-step>
-      <!--! Первая форма  -->
-      <div class="card" data-step>
-        <h3 class="title-step">This is step 1</h3>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+    <div id="app">
+      <form data-multi-step class="multi-step-form">
+        <!--! Первая форма  -->
+        <div class="card" data-step>
+          <h3 class="title-step">This is step 1</h3>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            />
+          </div>
+
+          <button type="button" data-next>Next</button>
         </div>
+        <!--! конец первой  -->
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
+        <!--! Вторая форма  -->
+        <div class="card" data-step>
+          <h3 class="title-step">This is step 2</h3>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" />
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" />
+          </div>
+
+          <div class="form-group">
+            <label for="zipcode">Zip Code</label>
+            <input type="text" name="zipcode" id="zipcode" />
+          </div>
+          <button type="button" data-previous>Previous</button>
+          <button type="button" data-next>Next</button>
         </div>
+        <!--! Конец второй формы  -->
 
-        <button type="button">Next</button>
-      </div>
-      <!--! конец первой  -->
+        <!--! Начало третьей формы  -->
+        <div class="card" data-step>
+          <h3 class="title-step">This is step 3</h3>
 
-      <!--! Вторая форма  -->
-      <div class="card" data-step>
-        <h3 class="title-step">This is step 2</h3>
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" name="address" id="address" />
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="firstName" name="firstName" id="firstName" />
+          </div>
+
+          <div class="form-group">
+            <label for="lastnNme">Last Name</label>
+            <input type="text" name="lastnNme" id="lastName" />
+          </div>
+
+          <button type="button" data-previous>Previous</button>
+          <button type="submit">Submit</button>
         </div>
-
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" name="city" id="city" />
-        </div>
-
-        <div class="form-group">
-          <label for="zipcode">Zip Code</label>
-          <input type="text" name="zipcode" id="zipcode" />
-        </div>
-        <button type="button">Previous</button>
-        <button type="button">Next</button>
-      </div>
-      <!--! Конец второй формы  -->
-
-      <!--! Начало третьей формы  -->
-      <div class="card" data-step>
-        <h3 class="title-step">This is step 3</h3>
-
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="firstName" name="firstName" id="firstName" />
-        </div>
-
-        <div class="form-group">
-          <label for="lastnNme">Last Name</label>
-          <input type="text" name="lastnNme" id="lastName" />
-        </div>
-
-        <button type="button">Previous</button>
-        <button type="submit">Submit</button>
-      </div>
-      <!--! Конец третьей  -->
-    </form>
+        <!--! Конец третьей  -->
+      </form>
+    </div>
     <script src="./script.js" type="module" defer></script>
   </body>
 </html>
