@@ -1,0 +1,18 @@
+.cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-bottom: 20px;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+.cards-wrapper > * {
+  flex-shrink: 0;
+}
+
+.cards-wrapper + * {
+  flex-shrink: 30px;
+}
