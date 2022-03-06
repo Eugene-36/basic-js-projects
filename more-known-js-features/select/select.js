@@ -48,7 +48,7 @@ function setupCustomElement(select) {
   select.customElement.classList.add('custom-select-container');
   select.customElement.tabIndex = 0;
 
-  console.log('select.customElement.tabIndex:', select.customElement);
+ 
 
   select.labelElement.classList.add('custom-select-value');
   select.labelElement.innerText = select.selectedOption.value;

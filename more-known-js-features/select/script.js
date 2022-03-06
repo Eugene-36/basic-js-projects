@@ -7,4 +7,3 @@ data.forEach((selectElement) => {
   console.log('selectElement', selectElement);
   new Select(selectElement);
 });
-// const select = new Select(selectElement);
