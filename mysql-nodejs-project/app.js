@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
-
+require('dotenv').config();
 //! Конфигурация пакетов
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'eguene',
   database: 'sql_course',
-  password: 'Livenskiy3658',
+  password: process.env.PASSWORD_KEY,
 });
 
 connection.connect((err) => {
