@@ -25,7 +25,7 @@ db.connect((err) => {
 });
 
 //! Make the post of the user
-app.get('/created', (req, res) => {
+app.post('/created', (req, res) => {
   const name = req.body.name;
   const age = req.body.age;
   const country = req.body.country;

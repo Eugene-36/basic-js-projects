@@ -17,10 +17,14 @@ function App() {
       country,
       position,
       wage,
-    }).then((resp) => {
-      console.log('res', resp);
-      console.log('success');
-    });
+    })
+      .then((resp) => {
+        console.log('res', resp);
+        console.log('success');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   // console.log('name', name);
