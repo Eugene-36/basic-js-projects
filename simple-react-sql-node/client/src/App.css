@@ -29,17 +29,52 @@ button {
   height: 5px;
   width: 100%;
   margin-top: 10px;
+  margin-bottom: 15px;
   background-color: brown;
 }
 
 .employees {
   text-align: center;
-  cursor: pointer;
+  display: flex;
+
+  justify-content: center;
+  flex-flow: wrap;
+
+  background-color: antiquewhite;
 }
+.employees > ul:not(:last-child) {
+  margin-right: 10px;
+}
+.employees > ul :first-child {
+  margin-bottom: 10px;
+}
+/* ul li:not(:first-child):not(:last-child) */
+
+/*! Тут нужны стили для обычной карточки  */
 .employeeList {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  width: 270px;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 270px;
+
+  background: #fafafa;
+  padding: 0;
 }
 
 .styleSpan {
   color: lightsalmon;
+}
+
+.imgFn {
+  width: 100px;
+}
+
+.getAllListBtn {
+  margin-top: 15px;
+  margin: auto;
 }

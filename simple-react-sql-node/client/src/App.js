@@ -1,7 +1,7 @@
 import './App.css';
 import Axios from 'axios';
 import { useState } from 'react';
-
+import funnyImg from '../src/img/funny.png';
 function App() {
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
@@ -72,11 +72,12 @@ function App() {
       </div>
       <div className='line-brake'></div>
 
+      <button className='getAllListBtn' onClick={getEmployess}>show Employess</button>
       <div className='employees'>
-        <button onClick={getEmployess}>show Employess</button>
         {employeeList.map(({ name, age, country, position, id }) => {
           return (
             <ul key={id} className='employeeList'>
+              <img className='imgFn' src={funnyImg} alt='funny-img' />
               <li>
                 <span className='styleSpan'>Name - </span> {name}
               </li>
