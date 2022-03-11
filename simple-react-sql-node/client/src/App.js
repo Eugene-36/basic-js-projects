@@ -8,8 +8,8 @@ function App() {
   const [country, setCountry] = useState('');
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
+  const [employeeList, setEmployeeList] = useState([]);
 
-  console.log();
   const addEmployee = () => {
     Axios.post('http://localhost:3001/created', {
       name,
@@ -21,17 +21,38 @@ function App() {
       .then((resp) => {
         console.log('res', resp);
         console.log('success');
+        setEmployeeList([
+          ...employeeList,
+          {
+            name,
+            age,
+            country,
+            position,
+            wage,
+          },
+        ]);
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  // console.log('name', name);
-  // console.log('age', age);
-  // console.log('country', country);
-  // console.log('position', position);
-  // console.log('wage', wage);
+  //! Get list of all users
+
+  const getEmployess = () => {
+    Axios.get('http://localhost:3001/getinfo')
+      .then((resp) => {
+        console.log('res getEmployess', resp);
+        console.log('success');
+        setEmployeeList(resp.data['results']);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  console.log('employeeList', employeeList);
+
   return (
     <div className='App'>
       <div className='information'>
@@ -48,6 +69,29 @@ function App() {
         <button type='submit' onClick={addEmployee}>
           Add Employee
         </button>
+      </div>
+      <div className='line-brake'></div>
+
+      <div className='employees'>
+        <button onClick={getEmployess}>show Employess</button>
+        {employeeList.map(({ name, age, country, position, id }) => {
+          return (
+            <ul key={id} className='employeeList'>
+              <li>
+                <span className='styleSpan'>Name - </span> {name}
+              </li>
+              <li>
+                <span className='styleSpan'>Age - </span> {age}
+              </li>
+              <li>
+                <span className='styleSpan'>Country - </span> {country}
+              </li>
+              <li>
+                <span className='styleSpan'>Position - </span> {position}
+              </li>
+            </ul>
+          );
+        })}
       </div>
     </div>
   );

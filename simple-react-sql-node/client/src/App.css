@@ -19,9 +19,27 @@
   margin: 5px;
 }
 
-.information button {
+button {
   width: 320px;
   height: 50px;
   margin-top: 15px;
   cursor: pointer;
+}
+.line-brake {
+  height: 5px;
+  width: 100%;
+  margin-top: 10px;
+  background-color: brown;
+}
+
+.employees {
+  text-align: center;
+  cursor: pointer;
+}
+.employeeList {
+  list-style: none;
+}
+
+.styleSpan {
+  color: lightsalmon;
 }

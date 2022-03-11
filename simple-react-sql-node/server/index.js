@@ -50,6 +50,20 @@ app.post('/created', (req, res) => {
   );
 });
 
+//! Get the stored data
+
+app.get('/getinfo', (req, res) => {
+  let sql = 'SELECT * FROM employess';
+  let query = db.query(sql, (err, results) => {
+    if (err) throw err;
+    console.log('result Get stored', results);
+    // res.send('Users fetched');
+
+    //console.log('response.data.meaning', response);
+    res.json({ results });
+  });
+});
+
 app.listen('3001', () => {
   console.log('port started on port 3001');
 });
