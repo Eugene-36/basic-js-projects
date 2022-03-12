@@ -81,8 +81,15 @@ function GetAllInformation() {
   };
 
   //! Delete Employess
-  const deleteEmployess = () => {
-    Axios.delete(`http://localhost:3001/delete/${}`);
+  const deleteEmployess = (id) => {
+    console.log('id из deleteEmployess', id);
+    Axios.delete(`http://localhost:3001/delete/${id}`)
+      .then((resp) => {
+        setEmployeeList(employeeList.filter((item) => item.id !== id));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -140,7 +147,12 @@ function GetAllInformation() {
                 >
                   Update
                 </button>
-                <button onClick={() => deleteEmployess(id) } className='buttoStyle'>Delete</button>
+                <button
+                  onClick={() => deleteEmployess(id)}
+                  className='buttoStyle'
+                >
+                  Delete
+                </button>
               </div>
             </ul>
           );

@@ -85,6 +85,18 @@ app.put('/update', (req, res) => {
     }
   );
 });
+
+//! Delete post
+app.delete('/delete/:id', (req, res) => {
+  let sql = `DELETE FROM employess WHERE id = ${req.params.id}`;
+  console.log('req.params.id:', typeof req.params.id);
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log('result', result);
+    res.send(result);
+  });
+});
+
 app.listen('3001', () => {
   console.log('port started on port 3001');
 });
