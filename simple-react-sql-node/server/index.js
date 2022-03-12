@@ -64,6 +64,27 @@ app.get('/getinfo', (req, res) => {
   });
 });
 
+//! UPDATE DATA
+
+app.put('/update', (req, res) => {
+  const id = req.body.userId;
+  const wage = req.body.newWage;
+  console.log('id :', id);
+  console.log('wage :', wage);
+
+  db.query(
+    'UPDATE employess SET wage = ? WHERE id = ?',
+    [wage, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('result from meth put update', result);
+        res.send(result);
+      }
+    }
+  );
+});
 app.listen('3001', () => {
   console.log('port started on port 3001');
 });

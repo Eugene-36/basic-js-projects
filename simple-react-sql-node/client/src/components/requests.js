@@ -9,6 +9,7 @@ function GetAllInformation() {
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
   const [employeeList, setEmployeeList] = useState([]);
+  const [newWage, setNewWage] = useState(0);
 
   const addEmployee = () => {
     Axios.post('http://localhost:3001/created', {
@@ -51,6 +52,39 @@ function GetAllInformation() {
       });
   };
 
+  //! Update Employess
+  const upDateEmployess = (userId) => {
+    Axios.put('http://localhost:3001/update', { newWage, userId })
+      .then((response) => {
+        console.log('employeeList', employeeList);
+        setEmployeeList(
+          employeeList.map((val) => {
+            const { id, name, country, age, position } = val;
+            return userId === id
+              ? {
+                  id,
+                  name,
+                  country,
+                  age,
+                  position,
+                  wage: newWage,
+                }
+              : val;
+          })
+        );
+
+        console.log('updated');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  //! Delete Employess
+  const deleteEmployess = () => {
+    Axios.delete(`http://localhost:3001/delete/${}`);
+  };
+
   return (
     <>
       <div className='information'>
@@ -63,6 +97,7 @@ function GetAllInformation() {
         <label htmlFor=''>Position</label>
         <input type='text' onChange={(e) => setPosition(e.target.value)} />
         <label htmlFor=''>Wage (year):</label>
+
         <input type='number' onChange={(e) => setWage(e.target.value)} />
         <button type='submit' onClick={addEmployee}>
           Add Employee
@@ -74,7 +109,7 @@ function GetAllInformation() {
         show Employess
       </button>
       <div className='employees'>
-        {employeeList.map(({ name, age, country, position, id }) => {
+        {employeeList.map(({ name, age, country, position, wage, id }) => {
           return (
             <ul key={id} className='employeeList'>
               <img className='imgFn' src={funnyImg} alt='funny-img' />
@@ -90,6 +125,23 @@ function GetAllInformation() {
               <li>
                 <span className='styleSpan'>Position - </span> {position}
               </li>
+              <li>
+                <span className='styleSpan'>Wage - </span> {wage}
+              </li>
+              <div>
+                <input
+                  onChange={(e) => setNewWage(e.target.value)}
+                  type='text'
+                  placeholder='2000....'
+                />
+                <button
+                  onClick={() => upDateEmployess(id)}
+                  className='buttoStyle'
+                >
+                  Update
+                </button>
+                <button onClick={() => deleteEmployess(id) } className='buttoStyle'>Delete</button>
+              </div>
             </ul>
           );
         })}
