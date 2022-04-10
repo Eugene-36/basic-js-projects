@@ -136,7 +136,8 @@ export function upload(selector, options = {}) {
 
     const previewInfo = preview.querySelectorAll('.preview-info');
     previewInfo.forEach(clearPreview);
-    onUpload(files);
+    console.log('previewInfo', previewInfo);
+    onUpload(files, previewInfo);
   };
 
   open.addEventListener('click', triggerInput);

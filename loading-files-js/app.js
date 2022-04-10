@@ -1,9 +1,7 @@
-// import { storage } from '../../firebase';
-import { initializeApp } from 'firebase/app';
-import { getStorage } from 'firebase/storage';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
-import firebase from 'firebase/compat/app';
-// import 'firebase/storage';
+//===============================
 import { upload } from './upload.js';
 import './style.scss';
 
@@ -18,29 +16,39 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
 
 upload('#file', {
   multi: true,
   accept: ['.png', '.jpg', '.jpeg', '.gif'],
-  onUpload(files) {
-    files.forEach((file) => {
-      const ref = ref(`images/${file.name}`);
+  onUpload(files, blocks) {
+    files.forEach((file, index) => {
+      const ref = storage.ref(`images/${file.name}`);
+
       const task = ref.put(file);
 
       task.on(
         'state_changed',
         (snapshot) => {
           const percentage =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(
+              0
+            ) + '%';
 
-          console.log('percentage', percentage);
+          const block = blocks[index].querySelector('.preview-info-progress');
+          console.log('block', block);
+          block.textContent = percentage;
+          block.style.width = percentage;
         },
         (error) => {
           console.log('error', error);
         },
         () => {
+          task.snapshot.ref.getDownloadURL().then((url) => {
+            console.log('Download url', url);
+          });
           console.log('Completed');
         }
       );

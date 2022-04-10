@@ -126,4 +126,8 @@ input[type='file'] {
   background: #42b983;
   text-align: center;
   transition: width 0.22s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
