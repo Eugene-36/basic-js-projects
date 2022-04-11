@@ -114,7 +114,6 @@ export class Upload {
     const { name } = e.target.dataset;
 
     console.log('name', name);
-
     this.files = this.files.filter((file) => file.name !== name);
 
     //?: удаляем кнопку загрузки если у нас пустой массив
