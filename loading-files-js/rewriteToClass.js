@@ -60,7 +60,7 @@ export class Upload {
     this.handleListeners(triggerInput, this.open);
   }
 
-  changeHandler = (e) => {
+  changeHandler(e) {
     if (!e.target.files.length) {
       return;
     }
@@ -104,9 +104,9 @@ export class Upload {
       //?: так как это асинхронная операция
       reader.readAsDataURL(file);
     });
-  };
+  }
 
-  removeHandler = (e) => {
+  removeHandler(e) {
     if (!e.target.dataset.name) {
       return;
     }
@@ -132,12 +132,12 @@ export class Upload {
     setTimeout(() => block.remove(), 300);
     // block.remove();
     console.log('block', block);
-  };
+  }
 
-  clearPreview = (el) => {
+  clearPreview(el) {
     el.style.bottom = '4px';
     el.innerHTML = '<div class="preview-info-progress"></div>';
-  };
+  }
 
   uploadHandler = () => {
     this.preview.querySelectorAll('.preview-remove').forEach((e) => e.remove());
@@ -152,8 +152,8 @@ export class Upload {
 
   handleListeners(triggerInput, open) {
     open.addEventListener('click', triggerInput);
-    this.#input.addEventListener('change', this.changeHandler);
-    this.preview.addEventListener('click', this.removeHandler);
+    this.#input.addEventListener('change', (e) => this.changeHandler(e));
+    this.preview.addEventListener('click', (e) => this.removeHandler(e));
     this.upload.addEventListener('click', this.uploadHandler);
   }
 }
