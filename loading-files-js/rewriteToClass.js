@@ -20,11 +20,13 @@ const element = (tag, classes = [], content) => {
 function noop() {}
 
 export class Upload {
+  #options;
+  #input;
   constructor(selector, options = {}, files = []) {
     this.selector = selector;
-    this.options = options;
+    this.#options = options;
     this.files = files;
-    this.input = document.querySelector(selector);
+    this.#input = document.querySelector(selector);
     this.open = element('button', ['btn'], 'Открыть');
     this.upload = element('button', ['btn', 'primary'], 'Загрузить');
     this.preview = element('div', ['preview']);
@@ -37,22 +39,23 @@ export class Upload {
     this.preview.classList.add('preview');
 
     this.upload.style.display = 'none';
-    this.input.insertAdjacentElement('afterend', this.preview);
-    this.input.insertAdjacentElement('afterend', this.upload);
-    this.input.insertAdjacentElement('afterend', this.open);
+    this.#input.insertAdjacentElement('afterend', this.preview);
+    this.#input.insertAdjacentElement('afterend', this.upload);
+    this.#input.insertAdjacentElement('afterend', this.open);
 
     //?: Проверя объект на true. И появляется возможность добавлять несколько картинок
-    if (this.options.multi) {
-      this.input.setAttribute('multiple', true);
+    if (this.#options.multi) {
+      this.#input.setAttribute('multiple', true);
     }
 
     //?: Обрабатываем варинт какие типы файлов можем принимать
-    if (this.options.accept && Array.isArray(this.options.accept)) {
-      this.input.setAttribute('accept', this.options.accept.join(','));
+    if (this.#options.accept && Array.isArray(this.#options.accept)) {
+      this.#input.setAttribute('accept', this.#options.accept.join(','));
     }
 
+    console.log('this.input', this.input);
     //?: Вешаю обработчик на кнопку, и чтобы по килку на её триггирилась загрузка файла
-    const triggerInput = () => this.input.click();
+    const triggerInput = () => this.#input.click();
 
     this.handleListeners(triggerInput, this.open);
   }
@@ -149,7 +152,7 @@ export class Upload {
 
   handleListeners(triggerInput, open) {
     open.addEventListener('click', triggerInput);
-    this.input.addEventListener('change', this.changeHandler);
+    this.#input.addEventListener('change', this.changeHandler);
     this.preview.addEventListener('click', this.removeHandler);
     this.upload.addEventListener('click', this.uploadHandler);
   }

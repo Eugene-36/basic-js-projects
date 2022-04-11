@@ -118,3 +118,5 @@ const uploads = new Upload('#file', {
 });
 
 uploads.createBtn();
+
+console.log(uploads.input);
