@@ -7,6 +7,7 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 //===============================
+//? импорт функционального компонента
 // import { upload } from './upload.js';
 
 //? Импорт классового компонента
