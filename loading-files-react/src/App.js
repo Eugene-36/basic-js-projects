@@ -77,11 +77,11 @@ function App() {
   const changeHandler = (e) => {
     if (e.target.files) {
       /* Get files in array form */
-      setArray(Array.from(e.target.files));
+      const files = Array.from(e.target.files);
 
       /* Map each file to a promise that resolves to an array of image URI */
       Promise.all(
-        array.map((file) => {
+        files.map((file) => {
           return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.addEventListener('load', (ev) => {
@@ -94,7 +94,11 @@ function App() {
       ).then(
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
-          setString({ imageArray: images });
+          setArray(files);
+          console.log('files', (files[0]['str'] = images));
+          //files['three'] = images;
+
+          setString(images);
         },
         (error) => {
           console.error(error);
@@ -103,8 +107,8 @@ function App() {
     }
   };
 
-  console.log('stringValue', stringValue);
-  console.log('files', files);
+  // console.log('stringValue', stringValue);
+  console.log('array', array);
 
   return (
     <div className='container'>
@@ -120,24 +124,33 @@ function App() {
           Открыть
         </button>
         <button className='btn primary'>Загрузить</button>
-        {/* <img src={stringValue} alt='' /> */}
-        {/* <img src={stringValue.imagePreviewUrl} alt={';'} /> */}
+
         <div className='preview'>
-          {array.length !== 0 &&
-            array.map((file) => (
-              <div className='previewImage' key={uuidv4()}>
-                <div className='previewRemove' data-name={file.name}>
-                  &times;
-                </div>
-                <img src={stringValue.imageArray} alt={file.name} />
-                <div className='preview-info'>
-                  <span>{file.name}</span>
-                  {bytesToSize(file.size)}
-                </div>
-              </div>
-            ))}
+          {array !== undefined &&
+            array.map(
+              ({ str, name, size }) =>
+                str !== undefined &&
+                str.map((el) => (
+                  <div className='previewImage' key={uuidv4()}>
+                    <div className='previewRemove' data-name={name}>
+                      &times;
+                    </div>
+
+                    <img
+                      key={uuidv4()}
+                      className='photo-uploaded'
+                      src={el}
+                      alt='#'
+                    />
+
+                    <div className='preview-info'>
+                      <span>{array[0].name}</span>
+                      {bytesToSize(size)}
+                    </div>
+                  </div>
+                ))
+            )}
         </div>
-        {/* <Upload selector={'#file'} options={options} multi={true} /> */}
       </div>
     </div>
   );
