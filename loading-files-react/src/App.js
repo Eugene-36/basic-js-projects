@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import React, { useState, useId, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Upload from './components/Upload.js';
 
@@ -27,6 +27,7 @@ function noop() {}
 function App() {
   const [stringValue, setString] = useState('');
   const [array, setArray] = useState([]);
+
   const id = useId();
 
   // const options = ['.png', '.jpg', '.jpeg', '.gif'];
@@ -94,11 +95,14 @@ function App() {
       ).then(
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
-          setArray(files);
-          console.log('files', (files[0]['str'] = images));
-          //files['three'] = images;
 
-          setString(images);
+          console.log('files', files);
+
+          setArray(files[images]);
+
+          // //files['three'] = images;
+
+          // setString();
         },
         (error) => {
           console.error(error);
@@ -107,8 +111,31 @@ function App() {
     }
   };
 
+  const buildImgTag = () => {
+    console.log(array);
+    //files: Array(1), str: Array(1)
+    return (
+      <>
+        {/* {stringValue} */}
+        {array.map((str, { name, size }) => (
+          <div className='previewImage' key={uuidv4()}>
+            <div className='previewRemove' data-name={'sad'}>
+              &times;
+            </div>
+
+            <img className='photo-uploaded' src={str} alt='uploaded' />
+            <div className='preview-info'>
+              {/* <span>{name}</span>
+              {bytesToSize(size)} */}
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  };
+
   // console.log('stringValue', stringValue);
-  console.log('array', array);
+  // console.log('array', array);
 
   return (
     <div className='container'>
@@ -126,30 +153,7 @@ function App() {
         <button className='btn primary'>Загрузить</button>
 
         <div className='preview'>
-          {array !== undefined &&
-            array.map(
-              ({ str, name, size }) =>
-                str !== undefined &&
-                str.map((el) => (
-                  <div className='previewImage' key={uuidv4()}>
-                    <div className='previewRemove' data-name={name}>
-                      &times;
-                    </div>
-
-                    <img
-                      key={uuidv4()}
-                      className='photo-uploaded'
-                      src={el}
-                      alt='#'
-                    />
-
-                    <div className='preview-info'>
-                      <span>{array[0].name}</span>
-                      {bytesToSize(size)}
-                    </div>
-                  </div>
-                ))
-            )}
+          {array.length !== 0 ? buildImgTag() : null}
         </div>
       </div>
     </div>
