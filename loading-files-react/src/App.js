@@ -26,7 +26,7 @@ function noop() {}
 
 function App() {
   const [stringValue, setString] = useState('');
-  const [array, setArray] = useState([]);
+  const [array, setArray] = useState();
 
   const id = useId();
 
@@ -98,7 +98,7 @@ function App() {
 
           console.log('files', files);
 
-          setArray(files[images]);
+          setArray({ files });
 
           // //files['three'] = images;
 
@@ -153,7 +153,7 @@ function App() {
         <button className='btn primary'>Загрузить</button>
 
         <div className='preview'>
-          {array.length !== 0 ? buildImgTag() : null}
+          {/* {array.length !== 0 ? buildImgTag() : null} */}
         </div>
       </div>
     </div>
