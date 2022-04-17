@@ -19,6 +19,7 @@ body {
   background: #fff;
   padding: 1rem;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .btn {
@@ -58,6 +59,7 @@ input[type='file'] {
   display: flex;
   flex-wrap: wrap;
   padding: 0.5rem;
+  justify-content: center;
 }
 
 .previewImage {
@@ -128,4 +130,8 @@ input[type='file'] {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.innerbar {
+  background: #42b983;
+  text-align: center;
 }
