@@ -57,7 +57,7 @@ body {
   cursor: pointer;
 }
 
-.wrapper > button:not(:nth-last-child(n + 3)) {
+.wrapper > button:not(:nth-last-child(n + 4)) {
   background-color: lightcoral;
   outline: none;
   border: none;
