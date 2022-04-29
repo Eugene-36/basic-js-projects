@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h3><b>B</b>ody <b>M</b>ass <b>I</b>ndex Calculator</h3>
+    <h3 class="headText center">
+      <span class="blue-cl">B</span>ody <span class="blue-cl">M</span>ass
+      <span class="blue-cl">I</span>ndex <span class="blue-cl">C</span>alculator
+    </h3>
     <form class="form" id="form">
       <!-- onsubmit="return validateForm()" на форме висела эта функция -->
       <div class="row-one">
@@ -26,12 +29,12 @@
         />
         <p class="text">Age</p>
         <label class="container">
-          <input type="radio" name="radio" id="f" />
+          <input type="checkbox" name="radio" id="f" />
           <p class="text">Female</p>
           <span class="checkmark"></span>
         </label>
         <label class="container">
-          <input type="radio" name="radio" id="m" />
+          <input type="checkbox" name="radio" id="m" />
           <p class="text">Male</p>
           <span class="checkmark"></span>
         </label>
@@ -56,5 +59,6 @@
       </div>
       <button type="button" id="submit">Submit</button>
     </form>
+    <script src="./script.js"></script>
   </body>
 </html>
