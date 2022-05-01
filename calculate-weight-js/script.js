@@ -32,10 +32,11 @@ function countBmi() {
     valuesArray.push('female');
   }
 
-  console.log('male', male.checked);
-  console.log('female.checked', female.checked);
   form.reset();
-  const bmi = Number(p[2] / Number(((p[1] / 100) * Number(p[1])) / 100));
+  const bmi = Number(
+    valuesArray[2] /
+      Number(((valuesArray[1] / 100) * Number(valuesArray[1])) / 100)
+  );
 
   if (bmi < 18.5) {
     result = 'Underweight';
@@ -69,9 +70,6 @@ function addeTextBody(bmi) {
   document.body.appendChild(h2);
   document.getElementById('submit').removeEventListener('click', countBmi);
   document.getElementById('submit').removeEventListener('click', validateForm);
-
-  // console.log('p', p);
 }
 
 document.getElementById('submit').addEventListener('click', countBmi);
-console.log(height);
