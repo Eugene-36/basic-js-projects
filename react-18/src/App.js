@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-
+import React, { useState, createContext, useContext } from 'react';
+import { UserContext } from '../src/userContext';
 import BatchingExample from './exampels/BatchingExample';
 import Concurrent from './exampels/Concurrent';
 //======== Route for imports
@@ -12,30 +12,37 @@ import NotFoundPage from './pages/not-found-page';
 import RequireAuth from './pages/check-auth';
 
 function App() {
+  const [user, setUser] = useState('Jesse Hasall');
+
   return (
-    <div className='App'>
-      <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/some' style={{ marginLeft: 10 }}>
-          Some
-        </Link>
-      </nav>
-      <hr />
-      <Routes>
-        {/* <HomePage /> */}
-        <Route path='/' element={
-        <RequireAuth redirectTo={'/login'}>
-          <HomePage />
-        </RequireAuth>} />
-        <Route path='some' element={<SomePage />} />
-        <Route path='/:id' element={<DeatailPage />}>
-          <Route path='info' element={<DetailChildPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-      {/* <BatchingExample /> */}
-      {/* <Concurrent /> */}
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <div className='App'>
+        <nav>
+          <Link to='/'>Home</Link>
+          <Link to='/some' style={{ marginLeft: 10 }}>
+            Some
+          </Link>
+        </nav>
+        <hr />
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <RequireAuth redirectTo={'/login'}>
+                <HomePage />
+              </RequireAuth>
+            }
+          />
+          <Route path='some' element={<SomePage />} />
+          <Route path='/:id' element={<DeatailPage />}>
+            <Route path='info' element={<DetailChildPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+        {/* <BatchingExample /> */}
+        {/* <Concurrent /> */}
+      </div>
+    </UserContext.Provider>
   );
 }
 

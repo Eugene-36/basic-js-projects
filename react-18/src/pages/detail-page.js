@@ -11,13 +11,13 @@ const DeatailPage = () => {
     if (!isInteger) {
       navigate('/');
     }
-  }, []);
+  }, [isInteger]);
   console.log('id', id);
   return (
     <div>
       detail-page id: {id}
       <br />
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 };
