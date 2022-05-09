@@ -1,0 +1,91 @@
+.App {
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-bar {
+  border-bottom: 1px solid #e0e3e7;
+  display: flex;
+  align-items: center;
+  flex: 0 0 60px;
+}
+
+.logo {
+  padding: 0 10px;
+}
+
+.main-menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.main-menu li {
+  padding: 5px 10px;
+}
+.create-button {
+  padding: 5px 10px;
+  margin: 0;
+  background: #0052cc;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.sidebar {
+  flex: 0 0 240px;
+  background: #fafbfc;
+  border-right: 1px solid #e7e7e7;
+}
+
+.page-content {
+  padding: 30px;
+}
+
+.sidebar-header {
+  padding: 10px;
+}
+
+.sidebar-section {
+  padding: 10px;
+}
+
+.sidebar-section-title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.board-picker {
+  padding: 10px;
+  margin: 0;
+  background: #f4f5f7;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.section-menu {
+  background: #f4f5f7;
+  padding: 0;
+  margin: 5px 0;
+  list-style-type: none;
+}
+
+.section-menu li {
+  padding: 5px 10px;
+}
