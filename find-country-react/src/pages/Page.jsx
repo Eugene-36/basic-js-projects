@@ -11,9 +11,11 @@ const contentCss = `
 `;
 
 const Page = ({ countries }) => {
-  const [selectedCountry, setSelectedCountry] = useState(countries);
-  const [savedCountry, setSavedCountry] = useState(countries);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [savedCountry, setSavedCountry] = useState(countries[0]);
   const [mode, setMode] = useState('light');
+
+console.log('selectedCountry0',selectedCountry);
 
   const list = useMemo(() => {
     return (

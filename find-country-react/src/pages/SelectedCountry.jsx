@@ -1,8 +1,9 @@
 const SelectedCountry = ({ country, onCountrySaved }) => {
+  console.log('country', country);
   return (
     <div className='selected-container'>
       <div className='selected-info'>
-        <ul >
+        <ul>
           <li>Country: {country.name}</li>
           <li>Capital: {country.capital}</li>
           <li>Region: {country.region}</li>
