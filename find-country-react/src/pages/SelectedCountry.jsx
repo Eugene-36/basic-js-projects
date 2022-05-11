@@ -1,5 +1,6 @@
-const SelectedCountry = ({ country, onCountrySaved }) => {
-  console.log('country', country);
+import React from 'react';
+
+export const SelectedCountry = ({ country, onCountrySaved }) => {
   return (
     <div className='selected-container'>
       <div className='selected-info'>
@@ -21,4 +22,3 @@ const SelectedCountry = ({ country, onCountrySaved }) => {
     </div>
   );
 };
-export default SelectedCountry;

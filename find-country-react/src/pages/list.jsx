@@ -44,7 +44,7 @@ const Item = ({ country, savedCountry, onItemClick }) => {
     savedCountry.id === country.id ? 'saved' : ''
   } ${mode === 'dark' ? 'dark' : ''}`;
 
-  console.log('render', country);
+  console.log('render', country[0]);
 
   return (
     <button className={className} onClick={onItemClick}>

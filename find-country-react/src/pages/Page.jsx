@@ -1,21 +1,15 @@
-import React, { useState, useMemo, useContext } from 'react';
+/** @jsxImportSource @emotion/react */
+import { useState, useMemo } from 'react';
+// import { css } from '@emotion/react';
+// import { Country } from './types';
+import { SelectedCountry } from './SelectedCountry';
 import { CountriesList } from './list';
-import SelectedCountry from './SelectedCountry';
 import { ThemeProvider, Mode } from './theme';
 
-// import { css } from '@emotion/react';
-
-const contentCss = `
-  display: flex;
-  width: 100%;
-`;
-
-const Page = ({ countries }) => {
+export const Page = ({ countries }) => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [savedCountry, setSavedCountry] = useState(countries[0]);
   const [mode, setMode] = useState('light');
-
-console.log('selectedCountry0',selectedCountry);
 
   const list = useMemo(() => {
     return (
@@ -37,21 +31,17 @@ console.log('selectedCountry0',selectedCountry);
   }, [selectedCountry]);
 
   const theme = useMemo(() => ({ mode }), [mode]);
+
   return (
-    <>
-      <ThemeProvider value={{ theme }}>
-        <h1>Country settings</h1>
-        {/* css={contentCss} */}
-        <button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
-          Toggle theme
-        </button>
-        <div>
-          {list}
-          {selected}
-        </div>
-      </ThemeProvider>
-    </>
+    <ThemeProvider value={theme}>
+      <h1>Country settings</h1>
+      <button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+        Toggle theme
+      </button>
+      <div style={{ display: 'flex', width: '100%' }}>
+        {list}
+        {selected}
+      </div>
+    </ThemeProvider>
   );
 };
-
-export default Page;
