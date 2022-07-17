@@ -1,5 +1,9 @@
+//Это вся форма мульти
 const multiStepForm = document.querySelector('[data-multi-step]');
 const formSteps = [...multiStepForm.querySelectorAll('[data-step]')];
+
+console.log('formSteps', formSteps);
+console.log('multiStepForm', multiStepForm);
 
 let currentStep = formSteps.findIndex((step) => {
   return step.classList.contains('active');
@@ -27,10 +31,6 @@ multiStepForm.addEventListener('click', (e) => {
 
   const allValid = inputs.every((input) => input.reportValidity());
 
-  console.log('inputs', inputs);
-
-  console.log('allValid', allValid);
-
   if (allValid) {
     currentStep += incrementor;
     showCurrentStep();
@@ -47,7 +47,9 @@ formSteps.forEach((step) => {
 
 function showCurrentStep() {
   formSteps.forEach((step, index) => {
-    //console.log('step', step);
+    console.log('step', step);
+    console.log('index', index);
+
     step.classList.toggle('active', index === currentStep);
   });
 }

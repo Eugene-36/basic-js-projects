@@ -29,6 +29,7 @@ function App() {
       id: Date.now(),
     };
 
+    console.log('customer', customer);
     dispatch(addCustomerAction(customer));
   };
 
