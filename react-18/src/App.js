@@ -10,12 +10,13 @@ import DeatailPage from './pages/detail-page';
 import DetailChildPage from './pages/detail-child-page';
 import NotFoundPage from './pages/not-found-page';
 import RequireAuth from './pages/check-auth';
+
 // ======= Imports custom hooks
 import useDebounce from './hooks/use-debounce';
 import useFetch from './hooks/use-fetch';
 
 const DATA = ['bike', 'cat', 'tree', 'dog', 'people', 'animal'];
-function App() {
+function App() {a
   // const [user, setUser] = useState('Jesse Hasall');
   const [text, setText] = useState('');
 
