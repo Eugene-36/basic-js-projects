@@ -1,59 +1,46 @@
-import { useState, useMemo } from 'react';
+import { useState, memo, useMemo, useCallback } from 'react';
 import './App.css';
 
-function App() {
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Kyle', age: 27 },
-    { id: 2, name: 'Sally', age: 32 },
-    { id: 3, name: 'Mike', age: 51 },
-    { id: 4, name: 'Jim', age: 55 },
-  ]);
-  const [selectedUserId, setSelectedUserId] = useState();
-  const selectedUser = useMemo(
-    () => users.find((user) => user.id === selectedUserId),
-    [users, selectedUserId]
-  );
-
-  function incrementAge(id) {
-    setUsers((currUsers) => {
-      return currUsers.map((user) => {
-        if (user.id === id) {
-          return { ...user, age: user.age + 1 };
-        } else {
-          return user;
-        }
-      });
-    });
-  }
-  function selectUser(id) {
-    setSelectedUserId(id);
-  }
+function Swatch({ params, onClick }) {
+  console.log(`Swatch rendered ${params.color}`);
 
   return (
-    <>
-      <h3>
-        Selected User:
-        {selectedUser == null
-          ? 'None'
-          : `${selectedUser.name} is ${selectedUser.age} years old`}
-      </h3>
+    <div
+      style={{
+        margin: 2,
+        width: 75,
+        height: 75,
+        backgroundColor: params.color,
+      }}
+      onClick={onClick}
+    ></div>
+  );
+}
 
-      {users.map((user) => (
-        <div
-          key={user.id}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr auto auto',
-            gap: '.25rem',
-            marginBottom: '.5rem',
-          }}
-        >
-          {user.name} is {user.age} years old
-          <button onClick={() => incrementAge(user.id)}>Increment</button>
-          <button onClick={() => selectUser(user.id)}>Select</button>
-        </div>
-      ))}
-    </>
+const MemoedSwatch = memo(Swatch);
+
+function App() {
+  const [appRenderIndex, setAppRenderIndex] = useState(0);
+  const [color, setColor] = useState('red');
+  console.log(`App rendered ${appRenderIndex}`);
+
+  const params = useMemo(() => ({ color }), [color]);
+  const onClick = useCallback(() => {}, []);
+
+  return (
+    <div className='App'>
+      <div>
+        <button onClick={() => setAppRenderIndex(appRenderIndex + 1)}>
+          Re-render-app
+        </button>
+        <button onClick={() => setColor(color === 'red' ? 'blue' : 'red')}>
+          Change Color
+        </button>
+      </div>
+      <div>
+        <MemoedSwatch params={params} onClick={onClick} />
+      </div>
+    </div>
   );
 }
 
